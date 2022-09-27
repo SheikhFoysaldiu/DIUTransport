@@ -5,7 +5,7 @@ const usersSlice = createSlice({
   initialState: {
     token: null,
     user: null,
-    groups: "fdgin",
+    groups: [],
     error: null,
   },
   reducers: {

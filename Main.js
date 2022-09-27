@@ -8,7 +8,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import merge from "deepmerge";
 import { PreferencesContext } from "./contexts/PreferencesContext ";
 import { themeLight, themeDark } from "./Configs/theme";
-import { Amplify, Analytics, PubSub } from "aws-amplify";
+import { Amplify } from "aws-amplify";
 import { AWSIoTProvider } from "@aws-amplify/pubsub";
 import awsconfig from "./src/aws-exports";
 import Root from "./navigation/Root";

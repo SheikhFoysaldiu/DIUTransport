@@ -1,8 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import MyMap from "../screens/Student/MyMap";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { useTheme } from "react-native-paper";

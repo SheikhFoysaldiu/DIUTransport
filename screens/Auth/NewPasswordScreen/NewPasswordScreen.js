@@ -5,6 +5,7 @@ import {
   ScrollView,
   Alert,
   StyleSheet,
+  StatusBar,
 } from "react-native";
 import { Text, useTheme } from "react-native-paper";
 import CustomInput from "../../../components/CustomInput/CustomInput";

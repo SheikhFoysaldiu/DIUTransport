@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Main from "./Main";
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Login } from "../redux/Reducers/user";
 
 const root = () => {
-  const { user, groups } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
 
   const [grp, setGrp] = useState(null);
 

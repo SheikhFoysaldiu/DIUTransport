@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { List, useTheme, Text, Surface } from "react-native-paper";
-import { FlatList, ImageBackground, SafeAreaView, View } from "react-native";
+import React from "react";
+import { useTheme, Text } from "react-native-paper";
+import { FlatList, SafeAreaView, View } from "react-native";
 import Bus from "../Bus/Bus";
 const BusList = ({ navigation, route }) => {
   const theme = useTheme();

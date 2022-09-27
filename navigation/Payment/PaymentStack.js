@@ -1,8 +1,5 @@
-import { View, Text } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import SelectSchedule from "../../screens/Payment/SelectSchedule";
-import SelectSeat from "../../screens/Payment/SelectSeat";
 import SelectMethod from "../../screens/Payment/SelectMethod";
 import Confirmations from "../../screens/Payment/Confirmations";
 import PaymentProcess from "../../screens/Payment/PaymentProcess";

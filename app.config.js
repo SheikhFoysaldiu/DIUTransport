@@ -32,6 +32,10 @@ export default {
       favicon: "./assets/favicon.png",
     },
     extra: {
+      eas: {
+        projectId: "96cffcb5-7a33-47b9-892c-ce788fecd919",
+      },
+
       apiKey: process.env.API_KEY,
       authDomain: process.env.AUTH_DOMAIN,
       projectId: process.env.PROJECT_ID,

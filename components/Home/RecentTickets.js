@@ -1,7 +1,7 @@
 import { TouchableOpacity } from "@gorhom/bottom-sheet";
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
-import { Text, Surface, useTheme, Divider } from "react-native-paper";
+import { View, ScrollView } from "react-native";
+import { Text, Surface, useTheme } from "react-native-paper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Ionicons from "react-native-vector-icons/Ionicons";

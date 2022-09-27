@@ -16,9 +16,9 @@
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/datetimepicker": "6.1.2",
     "@react-native-community/masked-view": "^0.1.11",
-    "@react-native-community/netinfo": "^9.3.1",
+    "@react-native-community/netinfo": "8.2.0",
     "@react-native-firebase/app": "^15.1.1",
-    "@react-native-picker/picker": "^2.4.4",
+    "@react-native-picker/picker": "2.4.0",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/drawer": "^6.4.3",
     "@react-navigation/native": "^6.0.11",
@@ -46,7 +46,7 @@
     "expo-random": "~12.2.0",
     "expo-splash-screen": "~0.15.1",
     "expo-status-bar": "~1.3.0",
-    "expo-updates": "~0.13.3",
+    "expo-updates": "~0.13.4",
     "expo-web-browser": "~10.2.1",
     "firebase": "^9.9.0",
     "greetingstouser": "^1.0.2",
@@ -80,6 +80,7 @@
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
     "swr": "^1.3.0",
+    "uglify-es": "3.2.2",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {

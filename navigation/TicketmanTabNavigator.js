@@ -2,15 +2,10 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useTheme } from "react-native-paper";
-import Home from "../screens/TicketMan/Home";
-import MyMap from "../screens/Student/MyMap";
 import TicketScan from "../screens/TicketMan/TicketScan";
-import Profile from "../screens/TicketMan/Profile";
 import ScanHistory from "../screens/TicketMan/ScanHistory";
 import Settings from "../screens/TicketMan/Settings/Settings";
 

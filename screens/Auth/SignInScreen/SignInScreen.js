@@ -8,6 +8,7 @@ import {
   Image,
   useWindowDimensions,
   SafeAreaView,
+  StatusBar,
 } from "react-native";
 import CustomInput from "../../../components/CustomInput/CustomInput";
 import CustomButton from "../../../components/CustomButton/CustomButton";

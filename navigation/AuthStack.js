@@ -1,6 +1,5 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "../screens/Auth/Login";
 import OnboardingScreen from "../screens/Student/OnboardingScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import StudentStack from "./StudentStack";

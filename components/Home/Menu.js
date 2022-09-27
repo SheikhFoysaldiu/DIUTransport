@@ -1,9 +1,9 @@
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Text, useTheme } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome5";
 const Menu = ({ props, navigation }) => {
   const theme = useTheme();
-  const { name, description, color, backgroundColor, icon, toRoute } = props;
+  const { name, description, backgroundColor, icon, toRoute } = props;
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate(toRoute)}

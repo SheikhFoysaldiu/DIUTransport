@@ -4,7 +4,6 @@ import CustomDrawer from "../components/CustomDrawer";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useTheme } from "react-native-paper";
 import StudentTabNavigator from "./StudentTabNavigator";
-import Settings from "../screens/Student/Settings/Settings";
 import SettingsStack from "./Settings/SettingsStack";
 
 const Drawer = createDrawerNavigator();
