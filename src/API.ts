@@ -68,7 +68,7 @@ export type Schedule = {
   time?: string | null,
   type?: string | null,
   day?: string | null,
-  buss?: ModelBusScheduleConnection | null,
+  buss?: ModelScheduleBusConnection | null,
   drivers?: ModelDriverScheduleConnection | null,
   conductors?: ModelConductorScheduleConnection | null,
   createdAt: string,
@@ -78,15 +78,15 @@ export type Schedule = {
   _lastChangedAt: number,
 };
 
-export type ModelBusScheduleConnection = {
-  __typename: "ModelBusScheduleConnection",
-  items:  Array<BusSchedule | null >,
+export type ModelScheduleBusConnection = {
+  __typename: "ModelScheduleBusConnection",
+  items:  Array<ScheduleBus | null >,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type BusSchedule = {
-  __typename: "BusSchedule",
+export type ScheduleBus = {
+  __typename: "ScheduleBus",
   id: string,
   scheduleID: string,
   busID: string,
@@ -109,7 +109,7 @@ export type Bus = {
   BusImages?: ModelBusImageConnection | null,
   status_on?: boolean | null,
   TicketSales?: ModelTicketSaleConnection | null,
-  Schedules?: ModelBusScheduleConnection | null,
+  Schedules?: ModelScheduleBusConnection | null,
   routeID: string,
   routes?: ModelRouteBusConnection | null,
   Tickets?: ModelTicketConnection | null,
@@ -239,6 +239,7 @@ export type TicketSale = {
   price: number,
   name: string,
   paymentVia?: string | null,
+  TicketID: string,
   createdAt: string,
   updatedAt: string,
   _version: number,
@@ -604,6 +605,7 @@ export type CreateTicketSaleInput = {
   price: number,
   name: string,
   paymentVia?: string | null,
+  TicketID: string,
   _version?: number | null,
   busTicketSalesId?: string | null,
   routeTicketSalesId?: string | null,
@@ -618,6 +620,7 @@ export type ModelTicketSaleConditionInput = {
   price?: ModelFloatInput | null,
   name?: ModelStringInput | null,
   paymentVia?: ModelStringInput | null,
+  TicketID?: ModelStringInput | null,
   and?: Array< ModelTicketSaleConditionInput | null > | null,
   or?: Array< ModelTicketSaleConditionInput | null > | null,
   not?: ModelTicketSaleConditionInput | null,
@@ -635,6 +638,7 @@ export type UpdateTicketSaleInput = {
   price?: number | null,
   name?: string | null,
   paymentVia?: string | null,
+  TicketID?: string | null,
   _version?: number | null,
   busTicketSalesId?: string | null,
   routeTicketSalesId?: string | null,
@@ -678,29 +682,29 @@ export type DeleteTicketInput = {
   _version?: number | null,
 };
 
-export type CreateBusScheduleInput = {
+export type CreateScheduleBusInput = {
   id?: string | null,
   scheduleID: string,
   busID: string,
   _version?: number | null,
 };
 
-export type ModelBusScheduleConditionInput = {
+export type ModelScheduleBusConditionInput = {
   scheduleID?: ModelIDInput | null,
   busID?: ModelIDInput | null,
-  and?: Array< ModelBusScheduleConditionInput | null > | null,
-  or?: Array< ModelBusScheduleConditionInput | null > | null,
-  not?: ModelBusScheduleConditionInput | null,
+  and?: Array< ModelScheduleBusConditionInput | null > | null,
+  or?: Array< ModelScheduleBusConditionInput | null > | null,
+  not?: ModelScheduleBusConditionInput | null,
 };
 
-export type UpdateBusScheduleInput = {
+export type UpdateScheduleBusInput = {
   id: string,
   scheduleID?: string | null,
   busID?: string | null,
   _version?: number | null,
 };
 
-export type DeleteBusScheduleInput = {
+export type DeleteScheduleBusInput = {
   id: string,
   _version?: number | null,
 };
@@ -913,6 +917,7 @@ export type ModelTicketSaleFilterInput = {
   price?: ModelFloatInput | null,
   name?: ModelStringInput | null,
   paymentVia?: ModelStringInput | null,
+  TicketID?: ModelStringInput | null,
   and?: Array< ModelTicketSaleFilterInput | null > | null,
   or?: Array< ModelTicketSaleFilterInput | null > | null,
   not?: ModelTicketSaleFilterInput | null,
@@ -931,13 +936,13 @@ export type ModelTicketFilterInput = {
   busTicketsId?: ModelIDInput | null,
 };
 
-export type ModelBusScheduleFilterInput = {
+export type ModelScheduleBusFilterInput = {
   id?: ModelIDInput | null,
   scheduleID?: ModelIDInput | null,
   busID?: ModelIDInput | null,
-  and?: Array< ModelBusScheduleFilterInput | null > | null,
-  or?: Array< ModelBusScheduleFilterInput | null > | null,
-  not?: ModelBusScheduleFilterInput | null,
+  and?: Array< ModelScheduleBusFilterInput | null > | null,
+  or?: Array< ModelScheduleBusFilterInput | null > | null,
+  not?: ModelScheduleBusFilterInput | null,
 };
 
 export type ModelDriverScheduleFilterInput = {
@@ -981,9 +986,9 @@ export type CreateScheduleMutation = {
     type?: string | null,
     day?: string | null,
     buss?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -1130,9 +1135,9 @@ export type UpdateScheduleMutation = {
     type?: string | null,
     day?: string | null,
     buss?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -1279,9 +1284,9 @@ export type DeleteScheduleMutation = {
     type?: string | null,
     day?: string | null,
     buss?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -1475,7 +1480,7 @@ export type CreateBusMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -1569,7 +1574,7 @@ export type CreateBusMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -1692,6 +1697,7 @@ export type CreateBusMutation = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1704,9 +1710,9 @@ export type CreateBusMutation = {
       startedAt?: number | null,
     } | null,
     Schedules?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -1897,7 +1903,7 @@ export type UpdateBusMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -1991,7 +1997,7 @@ export type UpdateBusMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -2114,6 +2120,7 @@ export type UpdateBusMutation = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -2126,9 +2133,9 @@ export type UpdateBusMutation = {
       startedAt?: number | null,
     } | null,
     Schedules?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -2319,7 +2326,7 @@ export type DeleteBusMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -2413,7 +2420,7 @@ export type DeleteBusMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -2536,6 +2543,7 @@ export type DeleteBusMutation = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -2548,9 +2556,9 @@ export type DeleteBusMutation = {
       startedAt?: number | null,
     } | null,
     Schedules?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -2812,6 +2820,7 @@ export type CreateRouteMutation = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -2965,6 +2974,7 @@ export type UpdateRouteMutation = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -3118,6 +3128,7 @@ export type DeleteRouteMutation = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -3206,6 +3217,7 @@ export type CreateRouteImageMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -3301,6 +3313,7 @@ export type UpdateRouteImageMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -3396,6 +3409,7 @@ export type DeleteRouteImageMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -3541,6 +3555,7 @@ export type CreateBusImageMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -3553,9 +3568,9 @@ export type CreateBusImageMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -3737,6 +3752,7 @@ export type UpdateBusImageMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -3749,9 +3765,9 @@ export type UpdateBusImageMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -3933,6 +3949,7 @@ export type DeleteBusImageMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -3945,9 +3962,9 @@ export type DeleteBusImageMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -4129,6 +4146,7 @@ export type CreateDriverMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -4141,9 +4159,9 @@ export type CreateDriverMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -4368,6 +4386,7 @@ export type UpdateDriverMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -4380,9 +4399,9 @@ export type UpdateDriverMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -4607,6 +4626,7 @@ export type DeleteDriverMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -4619,9 +4639,9 @@ export type DeleteDriverMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -4844,6 +4864,7 @@ export type CreateConductorMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -4856,9 +4877,9 @@ export type CreateConductorMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -5079,6 +5100,7 @@ export type UpdateConductorMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -5091,9 +5113,9 @@ export type UpdateConductorMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -5314,6 +5336,7 @@ export type DeleteConductorMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -5326,9 +5349,9 @@ export type DeleteConductorMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -5502,6 +5525,7 @@ export type CreateTicketSaleMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -5625,6 +5649,7 @@ export type CreateTicketSaleMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -5637,9 +5662,9 @@ export type CreateTicketSaleMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -5698,6 +5723,7 @@ export type CreateTicketSaleMutation = {
     price: number,
     name: string,
     paymentVia?: string | null,
+    TicketID: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -5776,6 +5802,7 @@ export type UpdateTicketSaleMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -5899,6 +5926,7 @@ export type UpdateTicketSaleMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -5911,9 +5939,9 @@ export type UpdateTicketSaleMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -5972,6 +6000,7 @@ export type UpdateTicketSaleMutation = {
     price: number,
     name: string,
     paymentVia?: string | null,
+    TicketID: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -6050,6 +6079,7 @@ export type DeleteTicketSaleMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -6173,6 +6203,7 @@ export type DeleteTicketSaleMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -6185,9 +6216,9 @@ export type DeleteTicketSaleMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -6246,6 +6277,7 @@ export type DeleteTicketSaleMutation = {
     price: number,
     name: string,
     paymentVia?: string | null,
+    TicketID: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -6370,6 +6402,7 @@ export type CreateTicketMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -6382,9 +6415,9 @@ export type CreateTicketMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -6565,6 +6598,7 @@ export type UpdateTicketMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -6577,9 +6611,9 @@ export type UpdateTicketMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -6760,6 +6794,7 @@ export type DeleteTicketMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -6772,9 +6807,9 @@ export type DeleteTicketMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -6841,14 +6876,14 @@ export type DeleteTicketMutation = {
   } | null,
 };
 
-export type CreateBusScheduleMutationVariables = {
-  input: CreateBusScheduleInput,
-  condition?: ModelBusScheduleConditionInput | null,
+export type CreateScheduleBusMutationVariables = {
+  input: CreateScheduleBusInput,
+  condition?: ModelScheduleBusConditionInput | null,
 };
 
-export type CreateBusScheduleMutation = {
-  createBusSchedule?:  {
-    __typename: "BusSchedule",
+export type CreateScheduleBusMutation = {
+  createScheduleBus?:  {
+    __typename: "ScheduleBus",
     id: string,
     scheduleID: string,
     busID: string,
@@ -6860,9 +6895,9 @@ export type CreateBusScheduleMutation = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -7017,6 +7052,7 @@ export type CreateBusScheduleMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -7029,9 +7065,9 @@ export type CreateBusScheduleMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -7095,14 +7131,14 @@ export type CreateBusScheduleMutation = {
   } | null,
 };
 
-export type UpdateBusScheduleMutationVariables = {
-  input: UpdateBusScheduleInput,
-  condition?: ModelBusScheduleConditionInput | null,
+export type UpdateScheduleBusMutationVariables = {
+  input: UpdateScheduleBusInput,
+  condition?: ModelScheduleBusConditionInput | null,
 };
 
-export type UpdateBusScheduleMutation = {
-  updateBusSchedule?:  {
-    __typename: "BusSchedule",
+export type UpdateScheduleBusMutation = {
+  updateScheduleBus?:  {
+    __typename: "ScheduleBus",
     id: string,
     scheduleID: string,
     busID: string,
@@ -7114,9 +7150,9 @@ export type UpdateBusScheduleMutation = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -7271,6 +7307,7 @@ export type UpdateBusScheduleMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -7283,9 +7320,9 @@ export type UpdateBusScheduleMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -7349,14 +7386,14 @@ export type UpdateBusScheduleMutation = {
   } | null,
 };
 
-export type DeleteBusScheduleMutationVariables = {
-  input: DeleteBusScheduleInput,
-  condition?: ModelBusScheduleConditionInput | null,
+export type DeleteScheduleBusMutationVariables = {
+  input: DeleteScheduleBusInput,
+  condition?: ModelScheduleBusConditionInput | null,
 };
 
-export type DeleteBusScheduleMutation = {
-  deleteBusSchedule?:  {
-    __typename: "BusSchedule",
+export type DeleteScheduleBusMutation = {
+  deleteScheduleBus?:  {
+    __typename: "ScheduleBus",
     id: string,
     scheduleID: string,
     busID: string,
@@ -7368,9 +7405,9 @@ export type DeleteBusScheduleMutation = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -7525,6 +7562,7 @@ export type DeleteBusScheduleMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -7537,9 +7575,9 @@ export type DeleteBusScheduleMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -7622,9 +7660,9 @@ export type CreateDriverScheduleMutation = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -7725,7 +7763,7 @@ export type CreateDriverScheduleMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -7798,9 +7836,9 @@ export type UpdateDriverScheduleMutation = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -7901,7 +7939,7 @@ export type UpdateDriverScheduleMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -7974,9 +8012,9 @@ export type DeleteDriverScheduleMutation = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -8077,7 +8115,7 @@ export type DeleteDriverScheduleMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -8150,9 +8188,9 @@ export type CreateConductorScheduleMutation = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -8251,7 +8289,7 @@ export type CreateConductorScheduleMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -8324,9 +8362,9 @@ export type UpdateConductorScheduleMutation = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -8425,7 +8463,7 @@ export type UpdateConductorScheduleMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -8498,9 +8536,9 @@ export type DeleteConductorScheduleMutation = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -8599,7 +8637,7 @@ export type DeleteConductorScheduleMutation = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -8768,6 +8806,7 @@ export type CreateRouteBusMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -8780,9 +8819,9 @@ export type CreateRouteBusMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -8892,6 +8931,7 @@ export type CreateRouteBusMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -9034,6 +9074,7 @@ export type UpdateRouteBusMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -9046,9 +9087,9 @@ export type UpdateRouteBusMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -9158,6 +9199,7 @@ export type UpdateRouteBusMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -9300,6 +9342,7 @@ export type DeleteRouteBusMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -9312,9 +9355,9 @@ export type DeleteRouteBusMutation = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -9424,6 +9467,7 @@ export type DeleteRouteBusMutation = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -9464,9 +9508,9 @@ export type GetScheduleQuery = {
     type?: string | null,
     day?: string | null,
     buss?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -9616,9 +9660,9 @@ export type ListSchedulesQuery = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -9692,9 +9736,9 @@ export type SyncSchedulesQuery = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -9810,7 +9854,7 @@ export type GetBusQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -9904,7 +9948,7 @@ export type GetBusQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -10027,6 +10071,7 @@ export type GetBusQuery = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -10039,9 +10084,9 @@ export type GetBusQuery = {
       startedAt?: number | null,
     } | null,
     Schedules?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -10284,6 +10329,7 @@ export type ListBusesQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -10296,9 +10342,9 @@ export type ListBusesQuery = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -10473,6 +10519,7 @@ export type SyncBusesQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -10485,9 +10532,9 @@ export type SyncBusesQuery = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -10679,6 +10726,7 @@ export type GetRouteQuery = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -10763,6 +10811,7 @@ export type ListRoutesQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -10851,6 +10900,7 @@ export type SyncRoutesQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -10941,6 +10991,7 @@ export type GetRouteImageQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -11200,6 +11251,7 @@ export type GetBusImageQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -11212,9 +11264,9 @@ export type GetBusImageQuery = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -11338,7 +11390,7 @@ export type ListBusImagesQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -11433,7 +11485,7 @@ export type SyncBusImagesQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -11584,6 +11636,7 @@ export type GetDriverQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -11596,9 +11649,9 @@ export type GetDriverQuery = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -11765,7 +11818,7 @@ export type ListDriversQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -11876,7 +11929,7 @@ export type SyncDriversQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -12041,6 +12094,7 @@ export type GetConductorQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -12053,9 +12107,9 @@ export type GetConductorQuery = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -12218,7 +12272,7 @@ export type ListConductorsQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -12327,7 +12381,7 @@ export type SyncConductorsQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -12445,6 +12499,7 @@ export type GetTicketSaleQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -12568,6 +12623,7 @@ export type GetTicketSaleQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -12580,9 +12636,9 @@ export type GetTicketSaleQuery = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -12641,6 +12697,7 @@ export type GetTicketSaleQuery = {
     price: number,
     name: string,
     paymentVia?: string | null,
+    TicketID: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -12740,7 +12797,7 @@ export type ListTicketSalesQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -12766,6 +12823,7 @@ export type ListTicketSalesQuery = {
       price: number,
       name: string,
       paymentVia?: string | null,
+      TicketID: string,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -12869,7 +12927,7 @@ export type SyncTicketSalesQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -12895,6 +12953,7 @@ export type SyncTicketSalesQuery = {
       price: number,
       name: string,
       paymentVia?: string | null,
+      TicketID: string,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -13021,6 +13080,7 @@ export type GetTicketQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -13033,9 +13093,9 @@ export type GetTicketQuery = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -13158,7 +13218,7 @@ export type ListTicketsQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -13252,7 +13312,7 @@ export type SyncTicketsQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -13289,13 +13349,13 @@ export type SyncTicketsQuery = {
   } | null,
 };
 
-export type GetBusScheduleQueryVariables = {
+export type GetScheduleBusQueryVariables = {
   id: string,
 };
 
-export type GetBusScheduleQuery = {
-  getBusSchedule?:  {
-    __typename: "BusSchedule",
+export type GetScheduleBusQuery = {
+  getScheduleBus?:  {
+    __typename: "ScheduleBus",
     id: string,
     scheduleID: string,
     busID: string,
@@ -13307,9 +13367,9 @@ export type GetBusScheduleQuery = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -13464,6 +13524,7 @@ export type GetBusScheduleQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -13476,9 +13537,9 @@ export type GetBusScheduleQuery = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -13542,17 +13603,17 @@ export type GetBusScheduleQuery = {
   } | null,
 };
 
-export type ListBusSchedulesQueryVariables = {
-  filter?: ModelBusScheduleFilterInput | null,
+export type ListScheduleBusesQueryVariables = {
+  filter?: ModelScheduleBusFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListBusSchedulesQuery = {
-  listBusSchedules?:  {
-    __typename: "ModelBusScheduleConnection",
+export type ListScheduleBusesQuery = {
+  listScheduleBuses?:  {
+    __typename: "ModelScheduleBusConnection",
     items:  Array< {
-      __typename: "BusSchedule",
+      __typename: "ScheduleBus",
       id: string,
       scheduleID: string,
       busID: string,
@@ -13564,7 +13625,7 @@ export type ListBusSchedulesQuery = {
         type?: string | null,
         day?: string | null,
         buss?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -13627,7 +13688,7 @@ export type ListBusSchedulesQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -13661,18 +13722,18 @@ export type ListBusSchedulesQuery = {
   } | null,
 };
 
-export type SyncBusSchedulesQueryVariables = {
-  filter?: ModelBusScheduleFilterInput | null,
+export type SyncScheduleBusesQueryVariables = {
+  filter?: ModelScheduleBusFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
 };
 
-export type SyncBusSchedulesQuery = {
-  syncBusSchedules?:  {
-    __typename: "ModelBusScheduleConnection",
+export type SyncScheduleBusesQuery = {
+  syncScheduleBuses?:  {
+    __typename: "ModelScheduleBusConnection",
     items:  Array< {
-      __typename: "BusSchedule",
+      __typename: "ScheduleBus",
       id: string,
       scheduleID: string,
       busID: string,
@@ -13684,7 +13745,7 @@ export type SyncBusSchedulesQuery = {
         type?: string | null,
         day?: string | null,
         buss?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -13747,7 +13808,7 @@ export type SyncBusSchedulesQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -13799,9 +13860,9 @@ export type GetDriverScheduleQuery = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -13902,7 +13963,7 @@ export type GetDriverScheduleQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -13978,7 +14039,7 @@ export type ListDriverSchedulesQuery = {
         type?: string | null,
         day?: string | null,
         buss?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -14066,7 +14127,7 @@ export type SyncDriverSchedulesQuery = {
         type?: string | null,
         day?: string | null,
         buss?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -14149,9 +14210,9 @@ export type GetConductorScheduleQuery = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -14250,7 +14311,7 @@ export type GetConductorScheduleQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -14326,7 +14387,7 @@ export type ListConductorSchedulesQuery = {
         type?: string | null,
         day?: string | null,
         buss?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -14412,7 +14473,7 @@ export type SyncConductorSchedulesQuery = {
         type?: string | null,
         day?: string | null,
         buss?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -14589,6 +14650,7 @@ export type GetRouteBusQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -14601,9 +14663,9 @@ export type GetRouteBusQuery = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -14713,6 +14775,7 @@ export type GetRouteBusQuery = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -14797,7 +14860,7 @@ export type ListRouteBusesQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -14918,7 +14981,7 @@ export type SyncRouteBusesQuery = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -14990,9 +15053,9 @@ export type OnCreateScheduleSubscription = {
     type?: string | null,
     day?: string | null,
     buss?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -15134,9 +15197,9 @@ export type OnUpdateScheduleSubscription = {
     type?: string | null,
     day?: string | null,
     buss?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -15278,9 +15341,9 @@ export type OnDeleteScheduleSubscription = {
     type?: string | null,
     day?: string | null,
     buss?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -15469,7 +15532,7 @@ export type OnCreateBusSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -15563,7 +15626,7 @@ export type OnCreateBusSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -15686,6 +15749,7 @@ export type OnCreateBusSubscription = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -15698,9 +15762,9 @@ export type OnCreateBusSubscription = {
       startedAt?: number | null,
     } | null,
     Schedules?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -15886,7 +15950,7 @@ export type OnUpdateBusSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -15980,7 +16044,7 @@ export type OnUpdateBusSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -16103,6 +16167,7 @@ export type OnUpdateBusSubscription = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -16115,9 +16180,9 @@ export type OnUpdateBusSubscription = {
       startedAt?: number | null,
     } | null,
     Schedules?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -16303,7 +16368,7 @@ export type OnDeleteBusSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -16397,7 +16462,7 @@ export type OnDeleteBusSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -16520,6 +16585,7 @@ export type OnDeleteBusSubscription = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -16532,9 +16598,9 @@ export type OnDeleteBusSubscription = {
       startedAt?: number | null,
     } | null,
     Schedules?:  {
-      __typename: "ModelBusScheduleConnection",
+      __typename: "ModelScheduleBusConnection",
       items:  Array< {
-        __typename: "BusSchedule",
+        __typename: "ScheduleBus",
         id: string,
         scheduleID: string,
         busID: string,
@@ -16791,6 +16857,7 @@ export type OnCreateRouteSubscription = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -16939,6 +17006,7 @@ export type OnUpdateRouteSubscription = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -17087,6 +17155,7 @@ export type OnDeleteRouteSubscription = {
         price: number,
         name: string,
         paymentVia?: string | null,
+        TicketID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -17170,6 +17239,7 @@ export type OnCreateRouteImageSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -17260,6 +17330,7 @@ export type OnUpdateRouteImageSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -17350,6 +17421,7 @@ export type OnDeleteRouteImageSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -17490,6 +17562,7 @@ export type OnCreateBusImageSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -17502,9 +17575,9 @@ export type OnCreateBusImageSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -17681,6 +17754,7 @@ export type OnUpdateBusImageSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -17693,9 +17767,9 @@ export type OnUpdateBusImageSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -17872,6 +17946,7 @@ export type OnDeleteBusImageSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -17884,9 +17959,9 @@ export type OnDeleteBusImageSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -18063,6 +18138,7 @@ export type OnCreateDriverSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -18075,9 +18151,9 @@ export type OnCreateDriverSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -18297,6 +18373,7 @@ export type OnUpdateDriverSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -18309,9 +18386,9 @@ export type OnUpdateDriverSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -18531,6 +18608,7 @@ export type OnDeleteDriverSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -18543,9 +18621,9 @@ export type OnDeleteDriverSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -18763,6 +18841,7 @@ export type OnCreateConductorSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -18775,9 +18854,9 @@ export type OnCreateConductorSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -18993,6 +19072,7 @@ export type OnUpdateConductorSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19005,9 +19085,9 @@ export type OnUpdateConductorSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -19223,6 +19303,7 @@ export type OnDeleteConductorSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19235,9 +19316,9 @@ export type OnDeleteConductorSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -19406,6 +19487,7 @@ export type OnCreateTicketSaleSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19529,6 +19611,7 @@ export type OnCreateTicketSaleSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19541,9 +19624,9 @@ export type OnCreateTicketSaleSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -19602,6 +19685,7 @@ export type OnCreateTicketSaleSubscription = {
     price: number,
     name: string,
     paymentVia?: string | null,
+    TicketID: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -19675,6 +19759,7 @@ export type OnUpdateTicketSaleSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19798,6 +19883,7 @@ export type OnUpdateTicketSaleSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -19810,9 +19896,9 @@ export type OnUpdateTicketSaleSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -19871,6 +19957,7 @@ export type OnUpdateTicketSaleSubscription = {
     price: number,
     name: string,
     paymentVia?: string | null,
+    TicketID: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -19944,6 +20031,7 @@ export type OnDeleteTicketSaleSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -20067,6 +20155,7 @@ export type OnDeleteTicketSaleSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -20079,9 +20168,9 @@ export type OnDeleteTicketSaleSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -20140,6 +20229,7 @@ export type OnDeleteTicketSaleSubscription = {
     price: number,
     name: string,
     paymentVia?: string | null,
+    TicketID: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -20259,6 +20349,7 @@ export type OnCreateTicketSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -20271,9 +20362,9 @@ export type OnCreateTicketSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -20449,6 +20540,7 @@ export type OnUpdateTicketSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -20461,9 +20553,9 @@ export type OnUpdateTicketSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -20639,6 +20731,7 @@ export type OnDeleteTicketSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -20651,9 +20744,9 @@ export type OnDeleteTicketSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -20720,9 +20813,9 @@ export type OnDeleteTicketSubscription = {
   } | null,
 };
 
-export type OnCreateBusScheduleSubscription = {
-  onCreateBusSchedule?:  {
-    __typename: "BusSchedule",
+export type OnCreateScheduleBusSubscription = {
+  onCreateScheduleBus?:  {
+    __typename: "ScheduleBus",
     id: string,
     scheduleID: string,
     busID: string,
@@ -20734,9 +20827,9 @@ export type OnCreateBusScheduleSubscription = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -20891,6 +20984,7 @@ export type OnCreateBusScheduleSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -20903,9 +20997,9 @@ export type OnCreateBusScheduleSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -20969,9 +21063,9 @@ export type OnCreateBusScheduleSubscription = {
   } | null,
 };
 
-export type OnUpdateBusScheduleSubscription = {
-  onUpdateBusSchedule?:  {
-    __typename: "BusSchedule",
+export type OnUpdateScheduleBusSubscription = {
+  onUpdateScheduleBus?:  {
+    __typename: "ScheduleBus",
     id: string,
     scheduleID: string,
     busID: string,
@@ -20983,9 +21077,9 @@ export type OnUpdateBusScheduleSubscription = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -21140,6 +21234,7 @@ export type OnUpdateBusScheduleSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -21152,9 +21247,9 @@ export type OnUpdateBusScheduleSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -21218,9 +21313,9 @@ export type OnUpdateBusScheduleSubscription = {
   } | null,
 };
 
-export type OnDeleteBusScheduleSubscription = {
-  onDeleteBusSchedule?:  {
-    __typename: "BusSchedule",
+export type OnDeleteScheduleBusSubscription = {
+  onDeleteScheduleBus?:  {
+    __typename: "ScheduleBus",
     id: string,
     scheduleID: string,
     busID: string,
@@ -21232,9 +21327,9 @@ export type OnDeleteBusScheduleSubscription = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -21389,6 +21484,7 @@ export type OnDeleteBusScheduleSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -21401,9 +21497,9 @@ export type OnDeleteBusScheduleSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -21481,9 +21577,9 @@ export type OnCreateDriverScheduleSubscription = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -21584,7 +21680,7 @@ export type OnCreateDriverScheduleSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -21652,9 +21748,9 @@ export type OnUpdateDriverScheduleSubscription = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -21755,7 +21851,7 @@ export type OnUpdateDriverScheduleSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -21823,9 +21919,9 @@ export type OnDeleteDriverScheduleSubscription = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -21926,7 +22022,7 @@ export type OnDeleteDriverScheduleSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -21994,9 +22090,9 @@ export type OnCreateConductorScheduleSubscription = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -22095,7 +22191,7 @@ export type OnCreateConductorScheduleSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -22163,9 +22259,9 @@ export type OnUpdateConductorScheduleSubscription = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -22264,7 +22360,7 @@ export type OnUpdateConductorScheduleSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -22332,9 +22428,9 @@ export type OnDeleteConductorScheduleSubscription = {
       type?: string | null,
       day?: string | null,
       buss?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -22433,7 +22529,7 @@ export type OnDeleteConductorScheduleSubscription = {
           startedAt?: number | null,
         } | null,
         Schedules?:  {
-          __typename: "ModelBusScheduleConnection",
+          __typename: "ModelScheduleBusConnection",
           nextToken?: string | null,
           startedAt?: number | null,
         } | null,
@@ -22597,6 +22693,7 @@ export type OnCreateRouteBusSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -22609,9 +22706,9 @@ export type OnCreateRouteBusSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -22721,6 +22818,7 @@ export type OnCreateRouteBusSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -22858,6 +22956,7 @@ export type OnUpdateRouteBusSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -22870,9 +22969,9 @@ export type OnUpdateRouteBusSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -22982,6 +23081,7 @@ export type OnUpdateRouteBusSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -23119,6 +23219,7 @@ export type OnDeleteRouteBusSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -23131,9 +23232,9 @@ export type OnDeleteRouteBusSubscription = {
         startedAt?: number | null,
       } | null,
       Schedules?:  {
-        __typename: "ModelBusScheduleConnection",
+        __typename: "ModelScheduleBusConnection",
         items:  Array< {
-          __typename: "BusSchedule",
+          __typename: "ScheduleBus",
           id: string,
           scheduleID: string,
           busID: string,
@@ -23243,6 +23344,7 @@ export type OnDeleteRouteBusSubscription = {
           price: number,
           name: string,
           paymentVia?: string | null,
+          TicketID: string,
           createdAt: string,
           updatedAt: string,
           _version: number,

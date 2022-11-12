@@ -642,6 +642,7 @@ export const onCreateBus = /* GraphQL */ `
           price
           name
           paymentVia
+          TicketID
           createdAt
           updatedAt
           _version
@@ -1019,6 +1020,7 @@ export const onUpdateBus = /* GraphQL */ `
           price
           name
           paymentVia
+          TicketID
           createdAt
           updatedAt
           _version
@@ -1396,6 +1398,7 @@ export const onDeleteBus = /* GraphQL */ `
           price
           name
           paymentVia
+          TicketID
           createdAt
           updatedAt
           _version
@@ -1645,6 +1648,7 @@ export const onCreateRoute = /* GraphQL */ `
           price
           name
           paymentVia
+          TicketID
           createdAt
           updatedAt
           _version
@@ -1782,6 +1786,7 @@ export const onUpdateRoute = /* GraphQL */ `
           price
           name
           paymentVia
+          TicketID
           createdAt
           updatedAt
           _version
@@ -1919,6 +1924,7 @@ export const onDeleteRoute = /* GraphQL */ `
           price
           name
           paymentVia
+          TicketID
           createdAt
           updatedAt
           _version
@@ -1995,6 +2001,7 @@ export const onCreateRouteImage = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2078,6 +2085,7 @@ export const onUpdateRouteImage = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2161,6 +2169,7 @@ export const onDeleteRouteImage = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2290,6 +2299,7 @@ export const onCreateBusImage = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2464,6 +2474,7 @@ export const onUpdateBusImage = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2638,6 +2649,7 @@ export const onDeleteBusImage = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2812,6 +2824,7 @@ export const onCreateDriver = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -3025,6 +3038,7 @@ export const onUpdateDriver = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -3238,6 +3252,7 @@ export const onDeleteDriver = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -3449,6 +3464,7 @@ export const onCreateConductor = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -3658,6 +3674,7 @@ export const onUpdateConductor = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -3867,6 +3884,7 @@ export const onDeleteConductor = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -4033,6 +4051,7 @@ export const onCreateTicketSale = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -4145,6 +4164,7 @@ export const onCreateTicketSale = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -4212,6 +4232,7 @@ export const onCreateTicketSale = /* GraphQL */ `
       price
       name
       paymentVia
+      TicketID
       createdAt
       updatedAt
       _version
@@ -4278,6 +4299,7 @@ export const onUpdateTicketSale = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -4390,6 +4412,7 @@ export const onUpdateTicketSale = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -4457,6 +4480,7 @@ export const onUpdateTicketSale = /* GraphQL */ `
       price
       name
       paymentVia
+      TicketID
       createdAt
       updatedAt
       _version
@@ -4523,6 +4547,7 @@ export const onDeleteTicketSale = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -4635,6 +4660,7 @@ export const onDeleteTicketSale = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -4702,6 +4728,7 @@ export const onDeleteTicketSale = /* GraphQL */ `
       price
       name
       paymentVia
+      TicketID
       createdAt
       updatedAt
       _version
@@ -4810,6 +4837,7 @@ export const onCreateTicket = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -4983,6 +5011,7 @@ export const onUpdateTicket = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -5156,6 +5185,7 @@ export const onDeleteTicket = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -5231,9 +5261,9 @@ export const onDeleteTicket = /* GraphQL */ `
     }
   }
 `;
-export const onCreateBusSchedule = /* GraphQL */ `
-  subscription OnCreateBusSchedule {
-    onCreateBusSchedule {
+export const onCreateScheduleBus = /* GraphQL */ `
+  subscription OnCreateScheduleBus {
+    onCreateScheduleBus {
       id
       scheduleID
       busID
@@ -5384,6 +5414,7 @@ export const onCreateBusSchedule = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -5456,9 +5487,9 @@ export const onCreateBusSchedule = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateBusSchedule = /* GraphQL */ `
-  subscription OnUpdateBusSchedule {
-    onUpdateBusSchedule {
+export const onUpdateScheduleBus = /* GraphQL */ `
+  subscription OnUpdateScheduleBus {
+    onUpdateScheduleBus {
       id
       scheduleID
       busID
@@ -5609,6 +5640,7 @@ export const onUpdateBusSchedule = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -5681,9 +5713,9 @@ export const onUpdateBusSchedule = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteBusSchedule = /* GraphQL */ `
-  subscription OnDeleteBusSchedule {
-    onDeleteBusSchedule {
+export const onDeleteScheduleBus = /* GraphQL */ `
+  subscription OnDeleteScheduleBus {
+    onDeleteScheduleBus {
       id
       scheduleID
       busID
@@ -5834,6 +5866,7 @@ export const onDeleteBusSchedule = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -6917,6 +6950,7 @@ export const onCreateRouteBus = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -7028,6 +7062,7 @@ export const onCreateRouteBus = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -7154,6 +7189,7 @@ export const onUpdateRouteBus = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -7265,6 +7301,7 @@ export const onUpdateRouteBus = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -7391,6 +7428,7 @@ export const onDeleteRouteBus = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -7502,6 +7540,7 @@ export const onDeleteRouteBus = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
