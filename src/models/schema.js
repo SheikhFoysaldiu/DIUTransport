@@ -42,7 +42,7 @@ export const schema = {
                     "name": "buss",
                     "isArray": true,
                     "type": {
-                        "model": "BusSchedule"
+                        "model": "ScheduleBus"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -120,6 +120,12 @@ export const schema = {
                                     "create",
                                     "update",
                                     "delete"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
                                 ]
                             }
                         ]
@@ -218,7 +224,7 @@ export const schema = {
                     "name": "Schedules",
                     "isArray": true,
                     "type": {
-                        "model": "BusSchedule"
+                        "model": "ScheduleBus"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -317,6 +323,12 @@ export const schema = {
                                     "create",
                                     "update",
                                     "delete"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
                                 ]
                             }
                         ]
@@ -430,6 +442,12 @@ export const schema = {
                                     "update",
                                     "delete"
                                 ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
+                                ]
                             }
                         ]
                     }
@@ -527,6 +545,12 @@ export const schema = {
                                     "create",
                                     "update",
                                     "delete"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
                                 ]
                             }
                         ]
@@ -627,6 +651,12 @@ export const schema = {
                                     "update",
                                     "delete"
                                 ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
+                                ]
                             }
                         ]
                     }
@@ -725,6 +755,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "TicketID": {
+                    "name": "TicketID",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -765,6 +802,24 @@ export const schema = {
                                     "create",
                                     "update",
                                     "delete"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "TicketChecker"
+                                ],
+                                "operations": [
+                                    "read",
+                                    "update"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
                                 ]
                             }
                         ]
@@ -1005,6 +1060,12 @@ export const schema = {
                                     "update",
                                     "delete"
                                 ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read"
+                                ]
                             }
                         ]
                     }
@@ -1108,8 +1169,8 @@ export const schema = {
                 }
             ]
         },
-        "BusSchedule": {
-            "name": "BusSchedule",
+        "ScheduleBus": {
+            "name": "ScheduleBus",
             "fields": {
                 "id": {
                     "name": "id",
@@ -1162,7 +1223,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "BusSchedules",
+            "pluralName": "ScheduleBuses",
             "attributes": [
                 {
                     "type": "model",
@@ -1431,5 +1492,6 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "e4409a21ff4455f1ef4e1428e68ab784"
+    "codegenVersion": "3.3.1",
+    "version": "0e7583955661f452fbee71e1e38b564b"
 };
