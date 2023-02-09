@@ -516,6 +516,7 @@ export const getBus = /* GraphQL */ `
           price
           name
           paymentVia
+          TicketID
           createdAt
           updatedAt
           _version
@@ -749,6 +750,7 @@ export const listBuses = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -924,6 +926,7 @@ export const syncBuses = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -1109,6 +1112,7 @@ export const getRoute = /* GraphQL */ `
           price
           name
           paymentVia
+          TicketID
           createdAt
           updatedAt
           _version
@@ -1161,45 +1165,17 @@ export const listRoutes = /* GraphQL */ `
         }
         Buses {
           items {
-            bus {
-              trackingID
-              status_on
-              updatedAt
-              name
-              id
-              Schedules {
-                items {
-                  schedule {
-                    id
-                    type
-                    time
-                    name
-                    day
-                    updatedAt
-                  }
-                }
-              }
-              Driver {
-                name
-                phone
-                id
-                updatedAt
-              }
-              Conductor {
-                updatedAt
-                phone
-                name
-                id
-              }
-              Tickets {
-                items {
-                  name
-                  price
-                  id
-                }
-              }
-            }
+            id
+            busID
+            routeID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
+          nextToken
+          startedAt
         }
         TicketSales {
           items {
@@ -1212,6 +1188,7 @@ export const listRoutes = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -1296,6 +1273,7 @@ export const syncRoutes = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -1375,6 +1353,7 @@ export const getRouteImage = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -1610,6 +1589,7 @@ export const getBusImage = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -1956,6 +1936,7 @@ export const getDriver = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2367,6 +2348,7 @@ export const getConductor = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2729,6 +2711,7 @@ export const getTicketSale = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2841,6 +2824,7 @@ export const getTicketSale = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -2908,6 +2892,7 @@ export const getTicketSale = /* GraphQL */ `
       price
       name
       paymentVia
+      TicketID
       createdAt
       updatedAt
       _version
@@ -3018,6 +3003,7 @@ export const listTicketSales = /* GraphQL */ `
         price
         name
         paymentVia
+        TicketID
         createdAt
         updatedAt
         _version
@@ -3137,6 +3123,7 @@ export const syncTicketSales = /* GraphQL */ `
         price
         name
         paymentVia
+        TicketID
         createdAt
         updatedAt
         _version
@@ -3248,6 +3235,7 @@ export const getTicket = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -3493,9 +3481,9 @@ export const syncTickets = /* GraphQL */ `
     }
   }
 `;
-export const getBusSchedule = /* GraphQL */ `
-  query GetBusSchedule($id: ID!) {
-    getBusSchedule(id: $id) {
+export const getScheduleBus = /* GraphQL */ `
+  query GetScheduleBus($id: ID!) {
+    getScheduleBus(id: $id) {
       id
       scheduleID
       busID
@@ -3646,6 +3634,7 @@ export const getBusSchedule = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -3718,13 +3707,13 @@ export const getBusSchedule = /* GraphQL */ `
     }
   }
 `;
-export const listBusSchedules = /* GraphQL */ `
-  query ListBusSchedules(
-    $filter: ModelBusScheduleFilterInput
+export const listScheduleBuses = /* GraphQL */ `
+  query ListScheduleBuses(
+    $filter: ModelScheduleBusFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBusSchedules(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listScheduleBuses(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         scheduleID
@@ -3822,14 +3811,14 @@ export const listBusSchedules = /* GraphQL */ `
     }
   }
 `;
-export const syncBusSchedules = /* GraphQL */ `
-  query SyncBusSchedules(
-    $filter: ModelBusScheduleFilterInput
+export const syncScheduleBuses = /* GraphQL */ `
+  query SyncScheduleBuses(
+    $filter: ModelScheduleBusFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncBusSchedules(
+    syncScheduleBuses(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -4655,6 +4644,7 @@ export const getRouteBus = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version
@@ -4766,6 +4756,7 @@ export const getRouteBus = /* GraphQL */ `
             price
             name
             paymentVia
+            TicketID
             createdAt
             updatedAt
             _version

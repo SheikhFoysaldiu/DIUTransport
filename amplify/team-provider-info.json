@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fleetmanagement-dev-95214-authRole",
+      "UnauthRoleArn": "arn:aws:iam::864128357983:role/amplify-fleetmanagement-dev-95214-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::864128357983:role/amplify-fleetmanagement-dev-95214-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-fleetmanagement-dev-95214-deployment",
+      "UnauthRoleName": "amplify-fleetmanagement-dev-95214-unauthRole",
+      "StackName": "amplify-fleetmanagement-dev-95214",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:864128357983:stack/amplify-fleetmanagement-dev-95214/4ecca720-2d97-11ed-95b7-0628714a04d4",
+      "AmplifyAppId": "d2gamxableqjc9"
+    }
+  }
+}
