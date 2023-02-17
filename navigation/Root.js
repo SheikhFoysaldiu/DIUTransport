@@ -6,6 +6,7 @@ import { Auth, Hub } from "aws-amplify";
 import Loader from "../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { Login } from "../redux/Reducers/user";
+import SplashScreen from "react-native-splash-screen";
 
 const root = () => {
   const { user } = useSelector((state) => state.user);
@@ -13,6 +14,10 @@ const root = () => {
   const [grp, setGrp] = useState(null);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   const checkUser = async () => {
     try {

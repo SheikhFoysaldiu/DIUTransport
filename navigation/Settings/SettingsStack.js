@@ -6,27 +6,30 @@ import Address from "../../screens/Student/Settings/Address";
 import ChangePassword from "../../screens/Student/Settings/ChangePassword";
 import Favourites from "../../screens/Student/Settings/Favourites";
 import Phone from "../../screens/Student/Settings/Phone";
+import FeedBack from "../../screens/Student/Settings/FeedBack";
 const Stack = createNativeStackNavigator();
 const SettingsStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Settingss"
-        component={Settings}
-        options={{ title: "Settings" }}
-      />
+	return (
+		<Stack.Navigator>
+			<Stack.Screen
+				name='Settingss'
+				component={Settings}
+				options={{ title: "Settings" }}
+			/>
 
-      <Stack.Screen name="Account" component={ProfileStack} />
+			<Stack.Screen name='Account' component={ProfileStack} />
 
-      <Stack.Screen name="Address" component={Address} />
+			<Stack.Screen name='Address' component={Address} />
 
-      <Stack.Screen name="ChangePassword" component={ChangePassword} />
+			<Stack.Screen name='ChangePassword' component={ChangePassword} />
 
-      <Stack.Screen name="Favourites" component={Favourites} />
+			<Stack.Screen name='Favourites' component={Favourites} />
 
-      <Stack.Screen name="Phone" component={Phone} />
-    </Stack.Navigator>
-  );
+			<Stack.Screen name='Phone' component={Phone} />
+
+			<Stack.Screen name='Feedback' component={FeedBack} />
+		</Stack.Navigator>
+	);
 };
 
 export default SettingsStack;
