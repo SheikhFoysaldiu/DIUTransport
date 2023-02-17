@@ -5,15 +5,8 @@ import MapView, {
   Marker,
   PROVIDER_GOOGLE,
 } from "react-native-maps";
-import {
-  StyleSheet,
-  View,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Dimensions, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Octicons";
-import useSWR from "swr";
 import Loader from "../Loader";
 import { PreferencesContext } from "../../contexts/PreferencesContext ";
 import { mapNight } from "../../Configs/MapNightStyle";
@@ -112,7 +105,7 @@ const Map = ({ busId, location, info, trackingID }) => {
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         },
-        1000
+        6000
       );
       mapRef.current?.animateCamera({
         center: {
@@ -157,9 +150,6 @@ const Map = ({ busId, location, info, trackingID }) => {
       >
         <Marker.Animated
           ref={markerRef}
-          icon={{
-            url: "https://cdn.mindbowser.com/custom_marker_pin.svg",
-          }}
           coordinate={coordinate}
           title={info?.title || "সূর্যমুখি - ১"}
           description={info?.contact || "ড্রাইভার: ০১৬১৬৩৪৬৮৩৫"}

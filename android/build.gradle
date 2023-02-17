@@ -46,7 +46,6 @@ allprojects {
             url(new File(['node', '--print', "require.resolve('jsc-android/package.json')"].execute(null, rootDir).text.trim(), '../dist'))
         }
 
-        jcenter()
         google()
         mavenCentral {
             // We don't want to fetch react-native from Maven Central as there are

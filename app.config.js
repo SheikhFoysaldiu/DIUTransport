@@ -27,6 +27,11 @@ export default {
         backgroundColor: "#FFFFFF",
       },
       package: "com.diu.transport",
+      config: {
+        googleMaps: {
+          apiKey: process.env.GOOGLE_MAP_API_KEY,
+        },
+      },
     },
     web: {
       favicon: "./assets/favicon.png",
